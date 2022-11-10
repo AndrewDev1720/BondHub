@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       flash.now()[:alert] = "Incorrect Username or Password"
       render 'new'
     end
-  end
+  end 
 
   def destroy
     session[:user_id] = nil

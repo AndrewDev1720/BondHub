@@ -13,3 +13,4 @@ class LikesController < ApplicationController
         params.permit(:user_id, :likable_id, :likable_type)
     end
 end
+ 

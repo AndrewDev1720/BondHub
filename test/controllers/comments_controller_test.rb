@@ -18,7 +18,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to articles_url
   end
-
+ 
   # test "should get index" do
   #   get comments_url
   #   assert_response :success

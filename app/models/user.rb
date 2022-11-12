@@ -11,6 +11,13 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name:  :Friendship, foreign_key: :friend_id
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
+  has_many :messages
+
+  has_many :chatrooms, foreign_key: :chat_sender_id
+  has_many :chat_receivers, through: :chatrooms
+  has_many :inverse_chatrooms, class_name: :Chatroom, foreign_key: :chat_receiver_id
+  has_many :chat_senders, through: :inverse_chatrooms
+
   has_many :friend_requests, foreign_key: :receiver
   has_many :requestors, through: :friend_requests
 
@@ -46,6 +53,10 @@ class User < ApplicationRecord
   end
 
   def getFriends()
-    self.friends.concat(self.inverse_friends)
+    return self.friends + self.inverse_friends
+  end
+
+  def getChatFriends()
+    return self.chat_senders + self.chat_receivers
   end
 end

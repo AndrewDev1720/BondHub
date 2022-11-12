@@ -6,7 +6,7 @@
         <div class = "text-center mt-4">
             <%= link_to "Edit your profile", edit_user_registration_path(@user.id), class: "btn btn-outline-primary"%>
         </div>
-    <%elsif !current_user.getFriends().include?(@user)%>
+    <%elsif !current_user.friends.include?(@user) && !current_user.inverse_friends.include?(@user)%>
         <%if current_user.requestors.include?(@user)%>
             <div class = "text-center mt-4">
                 <%= button_to "Accept Friend Request", friendships_path, method: :post,params: {user_id: current_user().id ,friend_id: @user.id},  class: "btn btn-outline-primary"%>
@@ -26,6 +26,7 @@
             <%= button_to "Unfriend this bitch", friendship_path, method: :delete,params: {friend_a_id: current_user().id ,friend_b_id: @user.id}, class: "btn btn-outline-primary"%>
         </div>
     <%end%>
+    <%= button_to "Message", chatrooms_path, method: :post, params: {chat_sender_id: current_user().id ,chat_receiver_id: @user.id}, class: "btn btn-outline-primary"%>
 <%end%>
 <h3 class ="text-center mt-4"><Strong><%=@user.username%>'s posts </strong></h1>
 <%= render 'articles/article'%>

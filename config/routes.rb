@@ -20,9 +20,14 @@ Rails.application.routes.draw do
   # get 'login', to: 'sessions#new'
   # post 'login', to: 'sessions#create'
   # delete 'logout', to: 'sessions#destroy'
+  resources :chatrooms
   resources :friend_requests
   resources :friendships
   resources :comments
   resources :likes
   resources :hashtags, except: [:destroy]
+
+  post 'message', to: 'messages#create'
+
+  mount ActionCable.server, at: '/cable'
 end

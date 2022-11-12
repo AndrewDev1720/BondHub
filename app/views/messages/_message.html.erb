@@ -1,0 +1,13 @@
+<div class="event">
+  <div class="content">
+    <div class="summary">
+      <%if message.user.id == current_user.id%>
+        <div class = "right aligned">
+          <em><%= message.user.username %></em>: <%= message.body%>
+        </div>
+      <%else%>
+        <em><%= message.user.username %></em>: <%= message.body%>
+      <%end%>
+    </div>
+  </div>
+</div>

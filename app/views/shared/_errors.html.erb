@@ -1,7 +1,7 @@
 <%if obj.errors.any?%>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <%if obj.class.name == "User"%>
-            <h4 class="alert-heading">You need to follow these rules to create a new user</h4>
+            <h4 class="alert-heading">You need to follow these rules to complete your action</h4>
         <%else%>
             <h4 class="alert-heading">You need to follow these rules to create an <%= obj.class.name%>:</h4>
         <%end%>

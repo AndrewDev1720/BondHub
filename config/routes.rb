@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   # end
   root(to: 'pages#home')
   get 'about', to: 'pages#about'
+  get 'game', to: 'pages#game'
   get 'articles/funny', to: 'articles#funny'
+  get 'users/:id/showfriends', to: 'users#show_friends', as: 'user_connection'
   # get '/users/:id/edit', to: 'users#edits'
   # patch '/users/:id/edit', to: 'users#updates'
   resources :articles

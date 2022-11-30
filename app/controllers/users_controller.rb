@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action(:getUser, only: [:show, :edit, :update, :destroy])
-  before_action(:check_owner, only: [:edit, :update, :destroy])
+  before_action(:getUser, only: [:show, :edit, :update, :destroy, :show_friends])
+  before_action(:check_owner, only: [:edit, :update])
 
 
 
@@ -17,6 +17,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+  end
+
+  def show_friends
+    @users = @user.getFriends()
   end
 
   # def create
@@ -46,12 +50,12 @@ class UsersController < ApplicationController
   # def edit
   # end
 
-  # def destroy
-  #   @user.destroy
-  #   # session[:user_id] = nil
-  #   flash[:notice] = "Account and all associated articles have successfully deleted"
-  #   redirect_to root_path
-  # end
+  def destroy
+    @user.destroy
+    # session[:user_id] = nil
+    flash[:notice] = "Account and all associated articles have successfully deleted"
+    redirect_to root_path
+  end
 
   private def user_params()
     params.require(:user).permit(:username, :email, :password, :avatar)

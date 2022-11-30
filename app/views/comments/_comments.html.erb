@@ -9,9 +9,15 @@
                     <p class="card-text"> <%= link_to(comment.user.username, user_path(comment.user)) if comment.user%>: <%=truncate(comment.body, length:100)%></p>
                     <%likeList = comment.likes.where(user_id: current_user, likable_id: comment.id, likable_type: "Comment")%>
                     <%if likeList.empty?%>
-                        <%=button_to "Like", likes_path, method: :post, params: { user_id: current_user.id, likable_id: comment.id, likable_type: "Comment" }, form: {style: 'display:inline-block;'}%> <%= comment.likes.count%>
+                        <%=button_to(likes_path, method: :post, params: { user_id: current_user.id, likable_id: comment.id, likable_type: "Comment"}, class: "btn btn-outline-primary") do%> 
+                            <i class="thumbs up outline icon"></i>
+                            <%= comment.likes.count%>
+                        <%end%>
                     <%else%>
-                        <%=button_to "Unlike", like_path(likeList.first), method: :delete, params: { user_id: current_user.id, likable_id: comment.id, likable_type: "Comment" }, form: {style: 'display:inline-block;'}%> <%= comment.likes.count%>
+                        <%=button_to(like_path(likeList.first), method: :delete, params: { user_id: current_user.id, likable_id: comment.id, likable_type: "Comment" }, class: "btn btn-outline-primary") do%> 
+                            <i class="thumbs down outline icon"></i>
+                            <%= comment.likes.count%>
+                        <%end%>
                     <%end%> 
                 </div>
                 </div>

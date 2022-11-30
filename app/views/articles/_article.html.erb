@@ -9,9 +9,15 @@
                     <p class="card-text"><%=truncate(article.description, length:100)%></p>
                     <%likeList = article.likes.where(user_id: current_user.id, likable_id: article.id, likable_type: "Article")%>
                     <%if likeList.empty?%>
-                        <%=button_to "Like", likes_path, method: :post, params: { user_id: current_user.id, likable_id: article.id, likable_type: "Article" }, form: {style: 'display:inline-block;'}%> <%= article.likes.count%>
+                        <%=button_to(likes_path, method: :post, params: { user_id: current_user.id, likable_id: article.id, likable_type: "Article" }, class: "btn btn-outline-primary") do%> 
+                            <i class="thumbs up outline icon"></i>
+                            <%= article.likes.count%>
+                        <%end%>
                     <%else%>
-                        <%=button_to "Unlike", like_path(likeList.first), method: :delete, params: { user_id: current_user.id, likable_id: article.id, likable_type: "Article" }, form: {style: 'display:inline-block;'}%> <%= article.likes.count%>
+                        <%=button_to(like_path(likeList.first), method: :delete, params: { user_id: current_user.id, likable_id: article.id, likable_type: "Article" }, class: "btn btn-outline-primary") do%> 
+                            <i class="thumbs down outline icon"></i>
+                            <%= article.likes.count%>
+                        <%end%>
                     <%end%> 
                     <%=render 'comments/form', article: article%>
                     <%=render 'comments/comments', article: article%>

@@ -1,0 +1,23 @@
+<div class = "game-body">
+    <div class = "game-header">
+      <h1 class = "game-h1">Guess My Number!</h1>
+      <p class="between">(Between 1 and 20)</p>
+      <button class="game-btn again">Again!</button>
+      <div class="game-number">?</div>
+    </div>
+    <div class= "game-main">
+      <section class="game-left">
+        <input type="game-number" class="guess" />
+        <button class="game-btn check">Check!</button>
+      </section>
+      <section class="game-right">
+        <p class="game-message">Start guessing...</p>
+        <p class="label-score">💯 Score: <span class="score">20</span></p>
+        <p class="label-highscore">
+          🥇 Highscore: <span class="highscore">0</span>
+        </p>
+      </section>
+    </div>
+  </div>
+</html>
+<%= javascript_pack_tag 'script'%>

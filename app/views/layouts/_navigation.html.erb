@@ -15,6 +15,11 @@
             <%= link_to "BondStars", users_path, class: "nav-link"%>
             <%# <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> %>
           </li>
+          <li class="nav-item active">
+              <%if logged_in?() && !current_user.admin%>
+                <%= link_to "Your profile", user_path(current_user.id),class: "nav-link"%>
+              <%end%>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               BondsFeed
@@ -32,13 +37,11 @@
               More
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%if logged_in?()%>
-                <%= link_to "Your profile", user_path(current_user.id),class: "dropdown-item"%>
-              <%end%>
               <%= link_to "About Us", about_path,class: "dropdown-item"%>
+              <%= link_to "Guessing Game", game_path,class: "dropdown-item"%>
               <%if logged_in?()%>
                 <div class="dropdown-divider"></div>
-                <%#= link_to "Edit your profile", edit_user_path(current_user.id),class: "dropdown-item"%>
+                <%= link_to "Your connections", user_connection_path(current_user.id),class: "dropdown-item"%>
                 <%= link_to "Edit your profile", edit_user_registration_path  ,class: "dropdown-item"%>
               <%end%>
             </div>

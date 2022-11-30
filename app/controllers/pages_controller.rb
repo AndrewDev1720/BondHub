@@ -5,5 +5,8 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def game
+  end
 end
  

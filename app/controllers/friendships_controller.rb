@@ -1,7 +1,6 @@
 class FriendshipsController < ApplicationController
     def create
         friendship = Friendship.create!(friendship_params())
-        byebug
         redirect_to user_path(params[:friend_id])
         current_user.friend_requests.where(requestor_id: current_user.id).delete_all
         current_user.friend_requests.where(receiver_id: current_user.id).delete_all

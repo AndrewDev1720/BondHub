@@ -16,11 +16,12 @@ class ChatroomsController < ApplicationController
 
     def index
         @message = Message.new
+        @messages = Message.custom_display
     end
     
     def show
         @message = Message.new
-        @messages = Chatroom.find(params[:id]).messages
+        @messages = Chatroom.find(params[:id]).messages.custom_display
     end
 
     private def chatroom_params()

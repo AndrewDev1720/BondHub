@@ -7,10 +7,16 @@
                     <p class="card-text text-white"> <%= link_to(reply.user.username, user_path(reply.user)) if reply.user%>: <%=truncate(reply.body, length:100)%> </p>
                     <%likeList = reply.likes.where(user_id: current_user, likable_id: reply.id, likable_type: "Comment")%>
                     <%if likeList.empty?%>
-                        <%=button_to "Like", likes_path, method: :post, params: { user_id: current_user.id, likable_id: reply.id, likable_type: "Comment" }, form: {style: 'display:inline-block;'}%> <%= reply.likes.count%>
+                        <%=button_to(likes_path, method: :post, params: { user_id: current_user.id, likable_id: reply.id, likable_type: "Comment"}, class: "btn btn-outline-primary") do%> 
+                            <i class="thumbs up outline icon"></i>
+                            <%= reply.likes.count%>
+                        <%end%>
                     <%else%>
-                        <%=button_to "Unlike", like_path(likeList.first), method: :delete, params: { user_id: current_user.id, likable_id: reply.id, likable_type: "Comment" }, form: {style: 'display:inline-block;'}  %> <%= reply.likes.count%>
-                    <%end%>  
+                        <%=button_to(like_path(likeList.first), method: :delete, params: { user_id: current_user.id, likable_id: reply.id, likable_type: "Comment" }, class: "btn btn-outline-primary") do%> 
+                            <i class="thumbs down outline icon"></i>
+                            <%= reply.likes.count%>
+                        <%end%>
+                    <%end%> 
                 </div>
                 </div>
             </div>

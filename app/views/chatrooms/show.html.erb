@@ -29,15 +29,9 @@
       <div class="ui fluid raised card chatbox">
         <div class="content">
           <div class="ui inverted vertical menu">
-            <a class="active item">
-              Home
-            </a>
-            <a class="item">
-              Messages
-            </a>
-            <a class="item">
-              Friends
-            </a>
+            <%=link_to 'Home', root_path, class: "active item"%>
+            <%=link_to 'Connections', user_connection_path(current_user), class: "item"%>
+            <%=link_to 'Game', game_path, class: "item"%>
           </div>
         </div>
       </div>

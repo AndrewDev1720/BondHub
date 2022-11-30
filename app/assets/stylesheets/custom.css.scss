@@ -9,6 +9,11 @@
 //     color: white !important;
 // }
 
+.button_to,
+.button_to div {
+  display: inline;
+}
+
 #messages {
   height: 15em;
   overflow: auto;

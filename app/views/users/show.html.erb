@@ -8,25 +8,25 @@
         </div>
     <%elsif !current_user.friends.include?(@user) && !current_user.inverse_friends.include?(@user)%>
         <%if current_user.requestors.include?(@user)%>
-            <div class = "text-center mt-4">
-                <%= button_to "Accept Friend Request", friendships_path, method: :post,params: {user_id: current_user().id ,friend_id: @user.id},  class: "btn btn-outline-primary"%>
-                <%= button_to "Reject Friend Request", friend_request_path, method: :delete,params: {requestor_id: @user.id ,receiver_id: current_user.id},  class: "btn btn-outline-primary"%>
+            <div class = "text-center mt-4" style="display:inline-block;">
+                <%= button_to "Accept Connect Request", friendships_path, method: :post, params: {user_id: current_user().id ,friend_id: @user.id}, class: "btn btn-outline-primary"%>
+                <%= button_to "Reject Connect Request", friend_request_path, method: :delete,params: {requestor_id: @user.id ,receiver_id: current_user.id},  class: "btn btn-outline-primary"%>
             </div>
         <%elsif !current_user.receivers.include?(@user)%>
             <div class = "text-center mt-4">
-                <%= button_to "Add Friend", friend_requests_path, method: :post,params: {requestor_id: current_user().id ,receiver_id: @user.id},  class: "btn btn-outline-primary"%>
+                <%= button_to "Connect", friend_requests_path, method: :post,params: {requestor_id: current_user().id ,receiver_id: @user.id},  class: "btn btn-outline-primary"%>
             </div>
         <%else%>
             <div class = "text-center mt-4">
-                <%= button_to "Cancel Friend Request", friend_request_path, method: :delete,params: {requestor_id: current_user().id ,receiver_id: @user.id}, class: "btn btn-outline-primary"%>
+                <%= button_to "Cancel Connect Request", friend_request_path, method: :delete,params: {requestor_id: current_user().id ,receiver_id: @user.id}, class: "btn btn-outline-primary"%>
             </div>
         <%end%>
     <%else%>
         <div class = "text-center mt-4">
-            <%= button_to "Unfriend this bitch", friendship_path, method: :delete,params: {friend_a_id: current_user().id ,friend_b_id: @user.id}, class: "btn btn-outline-primary"%>
+            <%= button_to "Connected", friendship_path, data: {confirm: "Confirm to disconnect with #{@user.username}"}, method: :delete,params: {friend_a_id: current_user().id ,friend_b_id: @user.id}, class: "btn btn-outline-primary"%>
+            <%= button_to "Message", chatrooms_path, method: :post, params: {chat_sender_id: current_user().id ,chat_receiver_id: @user.id}, class: "btn btn-outline-primary", style: 'margin-left: 20px'%>
         </div>
     <%end%>
-    <%= button_to "Message", chatrooms_path, method: :post, params: {chat_sender_id: current_user().id ,chat_receiver_id: @user.id}, class: "btn btn-outline-primary"%>
 <%end%>
 <h3 class ="text-center mt-4"><Strong><%=@user.username%>'s posts </strong></h1>
 <%= render 'articles/article'%>

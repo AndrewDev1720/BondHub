@@ -9,8 +9,11 @@
                 <p class="card-text", style = "margin-top: 15px"><%=pluralize((user.articles.count), "article")%></p>
                 <p class="card-text", style = "margin-top: 15px">Email address: <%=user.email%></p>
                 <%= link_to("View", user_path(user.id), class:"btn btn-outline-success")%>
-                <%if logged_in?() && (current_user.id == user.id or current_user().admin?())%>
-                <%= link_to "Edit Profile", edit_user_path(user.id), class:"btn btn-outline-primary"%>
+                <%if logged_in?() && current_user.id == user.id%>
+                    <%= link_to "Edit Profile", edit_user_registration_path(user.id), class:"btn btn-outline-primary"%>
+                <%end%>
+                <%if logged_in?() && current_user.admin == true%>
+                    <%= button_to "Delete Profile", user_path(user.id),data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger"%>
                 <%end%>
                 <%#= link_to "Delete", article_path(article.id), method: :delete, data:{confirm: "Are you sure?"}, class:"btn btn-outline-danger"%>
                 </div>
